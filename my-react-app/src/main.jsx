@@ -9,40 +9,44 @@ import ErrorPage from "./pages/error.jsx";
 import ProductPage from "./pages/products.jsx";
 import ProfilePage from "./pages/profile.jsx";
 import DetailProductPage from "./pages/detailProduct.jsx";
-import {Provider} from "react-redux";
-import store from "./redux/store";
+import { Provider } from "react-redux";
+import store from "./redux/store.js";
+import DarkModeContextProvider from "./context/DarkMode.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>Hello salsabila</div>,
-    errorElement:<ErrorPage/>
+    errorElement: <ErrorPage />,
   },
   {
     path: "/login",
-    element: <LoginPage/>,
+    element: <LoginPage />,
   },
   {
     path: "/register",
-    element: <RegisterPage/>,
+    element: <RegisterPage />,
   },
   {
     path: "/products",
-    element: <ProductPage/>,
+    element: <ProductPage />,
   },
   {
     path: "/profiles",
-    element: <ProfilePage/>,
+    element: <ProfilePage />,
   },
   {
     path: "/products/:id",
-    element: <DetailProductPage/>,
+    element: <DetailProductPage />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <DarkModeContextProvider>
+      <RouterProvider router={router} />
+      </DarkModeContextProvider>
+   
     </Provider>
   </React.StrictMode>
 );
